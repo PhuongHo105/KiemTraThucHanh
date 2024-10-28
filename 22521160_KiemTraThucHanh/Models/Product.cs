@@ -20,4 +20,6 @@ public partial class Product
     public string? MImage { get; set; }
 
     public virtual Category? IdTypeNavigation { get; set; }
+
+    public virtual ICollection<Img> Imgs { get; set; } = new List<Img>();
 }

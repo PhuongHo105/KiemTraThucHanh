@@ -17,6 +17,8 @@ public partial class QlspContext : DbContext
 
     public virtual DbSet<Category> Categories { get; set; }
 
+    public virtual DbSet<Img> Imgs { get; set; }
+
     public virtual DbSet<Product> Products { get; set; }
 
     public virtual DbSet<User> Users { get; set; }
@@ -39,9 +41,30 @@ public partial class QlspContext : DbContext
                 .HasColumnName("NAME_TYPE");
         });
 
+        modelBuilder.Entity<Img>(entity =>
+        {
+            entity.HasKey(e => new { e.IdProduct, e.Filename });
+
+            entity.ToTable("IMG");
+
+            entity.Property(e => e.IdProduct)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("ID_PRODUCT");
+            entity.Property(e => e.Filename)
+                .HasMaxLength(100)
+                .IsUnicode(false)
+                .HasColumnName("FILENAME");
+
+            entity.HasOne(d => d.IdProductNavigation).WithMany(p => p.Imgs)
+                .HasForeignKey(d => d.IdProduct)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_PRO_IMG");
+        });
+
         modelBuilder.Entity<Product>(entity =>
         {
-            entity.HasKey(e => e.IdProduct).HasName("PK__PRODUCT__69B20C2023D61150");
+            entity.HasKey(e => e.IdProduct).HasName("PK__PRODUCT__69B20C203624C158");
 
             entity.ToTable("PRODUCT");
 
@@ -73,7 +96,7 @@ public partial class QlspContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__USERS__3214EC275AAD23A6");
+            entity.HasKey(e => e.Id).HasName("PK__USERS__3214EC27B2BDF3AB");
 
             entity.ToTable("USERS");
 
@@ -82,6 +105,7 @@ public partial class QlspContext : DbContext
                 .HasMaxLength(20)
                 .IsUnicode(false)
                 .HasColumnName("PASSWORD");
+            entity.Property(e => e.Type).HasColumnName("TYPE");
             entity.Property(e => e.Username)
                 .HasMaxLength(20)
                 .IsUnicode(false)

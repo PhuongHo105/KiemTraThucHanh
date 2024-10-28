@@ -8,10 +8,10 @@
         <ul>
             @foreach (var item in Model)
             {
-                var getUrl = "https://localhost:7091/api/productapi/" + item.IdType;
+                var getUrl = "https://localhost:7057/api/productapi/" + item.IdType;
                 <li><a style="cursor:pointer" onclick="showProductByCategory('@getUrl')">@item.NameType</a></li>
 
-                @* <li><a asp-controller="Home" asp-action="SanPhamTheoLoai" asp-route-maloai="@item.MaLoai">@item.Loai</a></li> *@
+                @* <li><a asp-controller="Home" asp-action="ProductByCategory" asp-route-category="@item.IdType">@item.NameType</a></li>  *@
             }
         </ul>
     </div>
@@ -29,7 +29,7 @@
                     //str += '<p>' + val.tenSp + '</p>'
                     str += '<div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">';
                     str += '<div class="featured__item">';
-                    var linkimg = '../ProductImages/Images/' + $.trim(val.anhDaiDien);
+                    var linkimg = '../ProductImages/Images/' + $.trim(val.mImage);
                     str += '<div class="featured__item__pic set-bg" data-setbg="' + linkimg + '" style="background-image: url(&quot;'+linkimg+'&quot;)">';
                     str += '<ul class="featured__item__pic__hover">';
                     str += '<li><a href="#"><i class="fa fa-heart"></i></a></li>';
@@ -38,9 +38,9 @@
                     str += '</ul>';
                     str += '</div>';
                     str += '<div class="featured__item__text">';
-                    str += '<h6><a href =\"/Home/ProductDetail?maSP=' + val.maSp+ '">';
-                    str += val.tenSp + '</a></h6>';
-                    str += '<h5>' + val.giaNhoNhat + '</h5>';
+                    str += '<h6><a href =\"/Home/ProductDetail?idPro=' + $.trim(val.idProduct)+ '">';
+                    str += val.name + '</a></h6>';
+                    str += '<h5>' + val.price + '</h5>';
                     str += '</div> </div> </div >';
 
                 });
