@@ -2,6 +2,7 @@ using _22521160_KiemTraThucHanh.Models;
 using Azure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using _22521160_KiemTraThucHanh.Models.Authentication;
 using System.Diagnostics;
 using X.PagedList;
 
@@ -17,6 +18,7 @@ namespace _22521160_KiemTraThucHanh.Controllers
             _logger = logger;
         }
 
+        [Authentication]
         public IActionResult Index(int? page)
         {
             int pageSize = 8;
@@ -26,6 +28,8 @@ namespace _22521160_KiemTraThucHanh.Controllers
 
             return View(lst);
         }
+
+        [Authentication]
         public IActionResult ProductByCategory(int idCate, int? page)
         {
             int pageSize = 8;
@@ -36,7 +40,7 @@ namespace _22521160_KiemTraThucHanh.Controllers
             ViewBag.category = idCate;
             return View(lst);
         }
-
+        [Authentication]
         public IActionResult ProductDetail(string idPro)
         {
             var product = db.Products.SingleOrDefault(x => x.IdProduct == idPro);
@@ -44,7 +48,7 @@ namespace _22521160_KiemTraThucHanh.Controllers
             ViewBag.img = img;
             return View(product);
         }
-
+        [Authentication]
         public IActionResult Privacy()
         {
             return View();
