@@ -27,8 +27,8 @@ namespace _22521160_KiemTraThucHanh.Controllers
                 if (u != null)
                 {
                     HttpContext.Session.SetString("Username", u.Username.ToString());
-                    //if (u.Type == 1)
-                    //    return RedirectToAction("", "");
+                    if (u.Type == 1)
+                        return RedirectToAction("Index", "HomeAdmin", new {area="Admin"});
                     return RedirectToAction("Index", "Home");
                 }
             }

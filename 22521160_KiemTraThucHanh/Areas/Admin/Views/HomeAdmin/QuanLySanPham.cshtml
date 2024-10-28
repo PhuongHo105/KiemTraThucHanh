@@ -10,8 +10,9 @@
 <h1>Danh mục các sản phẩm</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="ThemSanPhamMoi">Thêm sản phẩm mới</a>
 </p>
+<p>@TempData["Message"]</p>
 <table class="table table-striped jambo_table bulk_action">
     <thead>
         <tr class="headings">
@@ -54,9 +55,8 @@
                 </td>
 
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.IdProduct">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.IdProduct">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.IdProduct">Delete</a>
+                    <a asp-action="SuaSanPham" asp-route-idPro="@item.IdProduct">Edit</a> |
+                    <a asp-action="XoaSanPham" asp-route-idPro="@item.IdProduct">Delete</a>
                 </td>
             </tr>
         }
