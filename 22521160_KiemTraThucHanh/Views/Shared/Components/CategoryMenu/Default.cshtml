@@ -8,8 +8,8 @@
         <ul>
             @foreach (var item in Model)
             {
-                @* var getUrl = "https://localhost:7091/api/productapi/" + item.IdType;
-                <li><a style="cursor:pointer" onclick="showProductByCategory('@getUrl')">@item.NameType</a></li> *@
+                var getUrl = "https://localhost:7091/api/productapi/" + item.IdType;
+                <li><a style="cursor:pointer" onclick="showProductByCategory('@getUrl')">@item.NameType</a></li>
 
                 @* <li><a asp-controller="Home" asp-action="SanPhamTheoLoai" asp-route-maloai="@item.MaLoai">@item.Loai</a></li> *@
             }

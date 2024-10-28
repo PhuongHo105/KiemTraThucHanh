@@ -29,20 +29,19 @@ public partial class QlspContext : DbContext
     {
         modelBuilder.Entity<Category>(entity =>
         {
-            entity.HasKey(e => e.IdType).HasName("PK__CATEGORY__274CEC82FB8ABF33");
+            entity.HasKey(e => e.IdType).HasName("PK__CATEGORY__274CEC828D0F7E31");
 
             entity.ToTable("CATEGORY");
 
             entity.Property(e => e.IdType).HasColumnName("ID_TYPE");
             entity.Property(e => e.NameType)
                 .HasMaxLength(20)
-                .IsUnicode(false)
                 .HasColumnName("NAME_TYPE");
         });
 
         modelBuilder.Entity<Product>(entity =>
         {
-            entity.HasKey(e => e.IdProduct).HasName("PK__PRODUCT__69B20C20C1C12D61");
+            entity.HasKey(e => e.IdProduct).HasName("PK__PRODUCT__69B20C2023D61150");
 
             entity.ToTable("PRODUCT");
 
