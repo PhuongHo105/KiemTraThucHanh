@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "QuanLySanPham";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdminLTE.cshtml";
+}
+
+@using _22521160_KiemTraThucHanh.Models
+@using X.PagedList.Mvc.Core;
+@model X.PagedList.IPagedList<Product>;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<h1>Danh mục các sản phẩm</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table table-striped jambo_table bulk_action">
+    <thead>
+        <tr class="headings">
+            <th>
+                Tên
+            </th>
+            <th>
+                Cân nặng
+            </th>
+            <th>
+                Giá
+            </th>
+
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int i = 0;
+            string cls;
+        }
+        @foreach (var item in Model)
+        {
+            i++;
+            cls = "even pointer";
+            if (i % 2 == 0)
+            {
+                cls = "odd pointer";
+            }
+            <tr class="@cls">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Weight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IdProduct">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.IdProduct">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.IdProduct">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="product__pagination">
+    @Html.PagedListPager(Model, page => Url.Action("QuanLySanPham", new { page = page }), new PagedListRenderOptions()
+{
+    LiElementClasses = new List<string> { "page-item" },
+    PageClasses = new List<string> { "page-link" }
+})
+</div>
