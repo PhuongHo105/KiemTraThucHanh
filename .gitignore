@@ -13,6 +13,7 @@ obj/
 # Auto-generated files
 *.vspscc
 *.vssscc
+*.vs
 
 # ASP.NET Scaffolding
 ScaffoldingReadMe.txt
